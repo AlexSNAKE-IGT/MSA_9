@@ -1,0 +1,56 @@
+{
+    "$schema": "https://www.krakend.io/schema/v3.json",
+    "version": 3,
+    "endpoints": [
+      {
+        "endpoint": "/books",
+        "method": "GET",
+        "backend": [{
+          "url_pattern": "/books",
+          "method": "GET",
+          "host": "http://books_service",
+          "is_collection": true,
+          "mapping": {
+            "collection": "books"
+          }
+        }]
+      },
+      {
+        "endpoint": "/book/{id}",
+        "output_encoding": "no-op",
+        "method": "GET",
+        "backend": [{
+          "encoding": "no-op",
+          "url_pattern": "/book/{id}",
+          "method": "GET",
+          "host": "http://books_service"
+          }
+        ]
+      },
+      {
+        "endpoint": "/users",
+        "method": "GET",
+        "backend": [{
+          "url_pattern": "/users",
+          "method": "GET",
+          "host": "http://users_service",
+          "is_collection": true,
+          "mapping": {
+            "collection": "users"
+          }
+        }]
+      },
+      {
+        "endpoint": "/user/{id}",
+        "output_encoding": "no-op",
+        "method": "GET",
+        "backend": [{
+          "encoding": "no-op",
+          "url_pattern": "/user/{id}",
+          "method": "GET",
+          "host": "http://users_service"
+        }]
+      }
+    ],
+    "extra_config": {}
+}
